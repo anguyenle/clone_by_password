@@ -1,5 +1,5 @@
 # clone_by_password
-This is an awful tool for wrapping git ssh commands. After setup, it is designed to work in one line.
+This is an awful tool for wrapping git ssh commands, and is intended to let you clone from private repositories without needing to log in. After setup, it is designed to work in one line.
 
 ## Example usage:
 
