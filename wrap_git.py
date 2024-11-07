@@ -73,8 +73,8 @@ def wrap_git_ssh(seed_string,
     # Temporarily add a enviroment variable to whatever shell we're in.
 
     os.environ['GIT_SSH_COMMAND'] = \
-        'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i ' + temp_file_dir
-
+        'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o "LogLevel ERROR" -i ' + temp_file_dir
+e
     # Restrict the key permissions, or else SSH will complain.
     os.system("chmod go-rwx " + temp_file_dir)
 
