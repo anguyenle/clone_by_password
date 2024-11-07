@@ -54,7 +54,7 @@ def wrap_git_ssh(seed_string,
 
     '''
 
-    current_working_directory = os.getcwd()
+    current_working_directory = os.getcwd() + "/"
 
     random.seed(a=seed_string, version=2)
     # Generate the RSA key pair
