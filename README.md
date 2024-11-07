@@ -6,6 +6,7 @@ This is an awful tool for wrapping git ssh commands, and is intended to let you 
 ### Setup
 
 python clone_by_password.py setup "password"
+
 python clone_by_password.py setup "password" --filename "access_key.pub"
 
 ### Cloning
