@@ -37,7 +37,7 @@ def setup_git_wrapper(seed_string,
 
 def wrap_git_ssh(seed_string,
                  git_command,
-                 private_key_filename = 'access_key'):
+                 private_key_filename = '/access_key'):
     '''
     The only tested use case is to git-clone from a private repo with 
     something resembling a password.
