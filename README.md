@@ -20,4 +20,4 @@ python wrap_git.py "password" "git clone git@github.com:anguyenle/clone_by_passw
 ```
 
 ## Testing
-We've successfully gotten this script to run on our Linux Machine and on Google Colab.
+We've successfully gotten this script to run on our Linux Machine and on Google Colab. We think we've fixed a bug where our system reports that it adds Github to the known_hosts file (even though it cannot). 
