@@ -64,17 +64,13 @@ def wrap_git_ssh(seed_string,
     private_key = key.export_key(format='PEM')
     private_string = private_key.decode()
 
-    # Export the public key in OpenSSH format
-    #public_key = key.publickey().export_key(format='OpenSSH')
-
     temp_file_dir = current_working_directory + private_key_filename
 
     # Write the key
     with open(temp_file_dir, "w+") as f:
         f.write(private_string)
 
-    # Temporarily add a enviroment variable to whatever shell we're
-    # in. This one is pretty benign.
+    # Temporarily add a enviroment variable to whatever shell we're in.
 
     os.environ['GIT_SSH_COMMAND'] = \
         'ssh -o StrictHostKeyChecking=no -i ' + temp_file_dir
