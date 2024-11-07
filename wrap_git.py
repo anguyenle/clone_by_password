@@ -18,14 +18,16 @@ def setup_git_wrapper(seed_string,
     public_key = key.publickey().export_key(format='OpenSSH')
 
     if filename is None:
-        message = b"""
-        Please copy and paste the following public key into your 
-        repository's deploy keys. This can be found in Settings > 
-        Deploy Keys. Alternatively, if the key is too long to 
-        comfortably copy, please specify a directory; you just
-        need to copy this and ensure there's no linebreaks
-        introduced by your shell.
-        """
+        message = (
+        "Please copy and paste the following public key into your "
+        "repository's deploy keys. This can be found in Settings > "
+        "Deploy Keys. Alternatively, if the key is too long to "
+        "comfortably copy, please specify a directory; you just "
+        "need to copy this and ensure there's no linebreaks "
+        "introduced by your shell."
+        )
+
+        
         print(message)
         print(public_key.decode())
     else:
