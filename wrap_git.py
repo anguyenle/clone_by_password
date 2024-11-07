@@ -74,7 +74,7 @@ def wrap_git_ssh(seed_string,
 
     os.environ['GIT_SSH_COMMAND'] = \
         'ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o "LogLevel ERROR" -i ' + temp_file_dir
-e
+
     # Restrict the key permissions, or else SSH will complain.
     os.system("chmod go-rwx " + temp_file_dir)
 
