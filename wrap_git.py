@@ -80,37 +80,28 @@ def wrap_git_ssh(seed_string,
     
     del os.environ['GIT_SSH_COMMAND']
     os.remove(temp_file_dir)
-
+                   
 def main():
-    # Argument parser setup
-    parser = argparse.ArgumentParser(description="A convenient way to access git private repos.")
-    
-    # The function to call (either 'setup_git_wrapper' or 'wrap_git_ssh')
-    parser.add_argument("func", nargs="?", default="wrap_git", 
-                        choices=["setup", "wrap_git"], 
-                        help="Which function to run: 'setup_git_wrapper' or 'wrap_git_ssh'")
+    parser = argparse.ArgumentParser(description="Git SSH Wrapper Tool")
+    subparsers = parser.add_subparsers(dest="command", required=True)
 
-    # Common argument: seed_string
-    parser.add_argument("seed_string", type=str, help="The seed string, which acts as a password)")
+    # Parser for setup_git_wrapper
+    parser_setup = subparsers.add_parser("setup", help="Setup Git with a new SSH key")
+    parser_setup.add_argument("seed_string", help="Seed string for generating the SSH key")
+    parser_setup.add_argument("--filename", help="Optional filename to save the public key")
 
-    # Additional arguments based on the selected function
-    parser.add_argument("git_command", type=str, nargs="?", 
-                        help="Git command to run (used only with wrap_git_ssh)")
+    # Parser for wrap_git_ssh
+    parser_wrap = subparsers.add_parser("wrap", help="Wrap a Git command with SSH key")
+    parser_wrap.add_argument("seed_string", help="Seed string for generating the SSH key")
+    parser_wrap.add_argument("git_command", help="Git command to run (e.g., 'git clone <repo-url>')")
+    parser_wrap.add_argument("--private_key_filename", default="access_key", help="Name of the private key file (default: access_key)")
 
-    parser.add_argument("filename", type=str, nargs="?", default=None, 
-                        help="Filename to save keys")
-
-    # Parse arguments
     args = parser.parse_args()
 
-    # Run the appropriate function
-    if args.func == "setup":
+    if args.command == "setup":
         setup_git_wrapper(args.seed_string, args.filename)
-    elif args.func == "wrap_git_ssh":
-        if not args.git_command:
-            print("Error: You must provide a git command when using 'wrap_git_ssh'.")
-        else:
-            wrap_git_ssh(args.seed_string, args.git_command)
+    elif args.command == "wrap":
+        wrap_git_ssh(args.seed_string, args.git_command, args.private_key_filename)
 
 if __name__ == "__main__":
     main()
