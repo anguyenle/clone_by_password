@@ -12,4 +12,4 @@ python clone_by_password.py setup "password" --filename "access_key.pub"
 ### Cloning
 python clone_by_password.py "password" "git clone git@github.com:anguyenle/clone_by_password.git"
 
-This script requires [pycryptodome](https://pycryptodome.readthedocs.io/en/latest/) works by seeding the RSA key generation process with deterministic noise.
+This script requires [pycryptodome](https://pycryptodome.readthedocs.io/en/latest/) works by seeding the RSA key generation process with seedable noise. Further, this script is designed to not change anything systemwide; after it runs, it should delete every temporary file it needed to create to work with git ssh commands.
