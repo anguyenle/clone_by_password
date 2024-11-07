@@ -1,3 +1,10 @@
+import argparse
+import os
+import random
+from Crypto.PublicKey import RSA
+
+# Requirements, pycryptodome.
+
 def setup_git_wrapper(seed_string,
                       filename = None):
     '''
@@ -28,7 +35,8 @@ def wrap_git_ssh(seed_string,
     Arguments:
 
     seed_string : This is pretty much a password
-    git_command : This command should be copy-pasted from Github.
+    git_command : This command is what you want to do. If you want
+        to git-clone, you should pretty much copy-paste from Github.
     
     private_key_filename : The name of the private key. This file will
         be stored in the current directory, and deleted after runtime.
@@ -73,3 +81,36 @@ def wrap_git_ssh(seed_string,
     os.remove(temp_file_dir)
 
 def main():
+    # Argument parser setup
+    parser = argparse.ArgumentParser(description="A convenient way to access git private repos.")
+    
+    # The function to call (either 'setup_git_wrapper' or 'wrap_git_ssh')
+    parser.add_argument("func", nargs="?", default="wrap_git", 
+                        choices=["setup", "wrap_git"], 
+                        help="Which function to run: 'setup_git_wrapper' or 'wrap_git_ssh'")
+
+    # Common argument: seed_string
+    parser.add_argument("seed_string", type=str, help="The seed string, which acts as a password)")
+
+    # Additional arguments based on the selected function
+    parser.add_argument("git_command", type=str, nargs="?", 
+                        help="Git command to run (used only with wrap_git_ssh)")
+
+    parser.add_argument("filename", type=str, nargs="?", default=None, 
+                        help="Filename to save keys")
+
+    # Parse arguments
+    args = parser.parse_args()
+
+    # Run the appropriate function
+    if args.func == "setup":
+        setup_git_wrapper(args.seed_string, args.filename)
+    elif args.func == "wrap_git_ssh":
+        if not args.git_command:
+            print("Error: You must provide a git command when using 'wrap_git_ssh'.")
+        else:
+            wrap_git_ssh(args.seed_string, args.git_command)
+
+if __name__ == "__main__":
+    main()
+
