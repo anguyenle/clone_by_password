@@ -19,6 +19,7 @@ def setup_git_wrapper(seed_string,
 
     if filename is None:
         message = "Please copy and paste the following public key into your repository's deploy keys. This can be found in Settings > Deploy Keys. Alternatively, if the key is too long to comfortably copy, please specify a directory."
+        print(message)
         print(public_key.decode())
     else:
         with open(filename, "w+") as f:
