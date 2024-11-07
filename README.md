@@ -19,3 +19,5 @@ python wrap_git.py setup "password" --filename "access_key.pub"
 python wrap_git.py "password" "git clone git@github.com:anguyenle/clone_by_password.git"
 ```
 
+## Testing
+We've successfully gotten this script to run on our Linux Machine and on Google Colab.
