@@ -15,6 +15,7 @@ One annoying thing that can happen is that your terminal may add line-breaks tha
 python wrap_git.py setup "password" --filename "access_key.pub"
 ```
 ### Cloning
+This use case is pretty much the only thing we designed this tool to do. Of course, it can execute any git command that relies on SSH for its job, but we do not test this use case.
 ```
 python wrap_git.py "password" "git clone git@github.com:anguyenle/clone_by_password.git"
 ```
