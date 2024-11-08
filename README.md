@@ -1,7 +1,7 @@
 # clone_by_password
 This is an awful tool for wrapping git ssh commands, and is intended to let you clone from private repositories without needing to log in. Nobody should use this because it eschews security for convenience, which is always a bad thing. We personally never use it because our security practices are top notch.
 
-After setup, it is designed to work in one line. This script requires [pycryptodome](https://pycryptodome.readthedocs.io/en/latest/), and works by seeding the RSA key generation process with deterministic noise which pretty much acts like a password. Further, this script is designed to not change anything systemwide; after it runs, it should delete every temporary file it created to work with git ssh commands.
+After setting up our repo, it is designed to work in one line with no persistent changes to the system. This script requires [pycryptodome](https://pycryptodome.readthedocs.io/en/latest/), and works by seeding the RSA key generation process with deterministic noise which pretty much acts like a password. Once again, this should delete every temporary file it created to work with git ssh commands.
 
 ## Example usage:
 
